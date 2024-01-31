@@ -35,17 +35,21 @@
         <script src="data/BouchesduRhone_1.js"></script>
         <script src="data/EPCIBouchesduRhone_2.js"></script>
         <script src="data/CommunesBouchesduRhne_3.js"></script>
-        <script src="data/Risquecommunaldeprcaritalimentaire_4.js"></script>
-        <script src="data/SecoursPopulaire_5.js"></script>
-        <script src="data/RestoduCoeur_6.js"></script>
-        <script src="data/SecoursCatholique_7.js"></script>
-        <script src="data/AssociationspartenairesBA13_8.js"></script>
-        <script src="data/AntenneBA13SaintAndiol_9.js"></script>
-        <script src="data/BanqueAlimentairedesBouchesduRhne_10.js"></script>
+        <script src="data/Iris_Marseille_4.js"></script>
+        <script src="data/Risquecommunaldeprcaritalimentaire_5.js"></script>
+        <script src="data/MagasinsCollecte2023_6.js"></script>
+        <script src="data/GMSRamasse_7.js"></script>
+        <script src="data/DonateursProxiDon_8.js"></script>
+        <script src="data/SecoursPopulaire_9.js"></script>
+        <script src="data/RestoduCoeur_10.js"></script>
+        <script src="data/SecoursCatholique_11.js"></script>
+        <script src="data/AssociationsutilisatricesProxiDon_12.js"></script>
+        <script src="data/Associationspartenaires_13.js"></script>
+        <script src="data/BanqueAlimentairedesBouchesduRhne_14.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[43.160005098878045,4.243988094144874],[43.90833434515177,6.090969975196996]]);
+        }).fitBounds([[43.22414261494088,4.407039588386438],[43.90682430030575,6.155127980601755]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -126,11 +130,11 @@
             return {
                 pane: 'pane_EPCIBouchesduRhone_2',
                 opacity: 1,
-                color: 'rgba(38,21,129,1.0)',
+                color: 'rgba(23,135,205,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
-                weight: 2.0,
+                weight: 4.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -186,7 +190,50 @@
         });
         bounds_group.addLayer(layer_CommunesBouchesduRhne_3);
         map.addLayer(layer_CommunesBouchesduRhne_3);
-        function pop_Risquecommunaldeprcaritalimentaire_4(feature, layer) {
+        function pop_Iris_Marseille_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Commune</strong><br />' + (feature.properties['com_name'] !== null ? autolinker.link(feature.properties['com_name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Iris</strong><br />' + (feature.properties['iris_name'] !== null ? autolinker.link(feature.properties['iris_name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Quartier</strong><br />' + (feature.properties['iris_grd_qu_1'] !== null ? autolinker.link(feature.properties['iris_grd_qu_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Iris_Marseille_4_0() {
+            return {
+                pane: 'pane_Iris_Marseille_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,207,80,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Iris_Marseille_4');
+        map.getPane('pane_Iris_Marseille_4').style.zIndex = 404;
+        map.getPane('pane_Iris_Marseille_4').style['mix-blend-mode'] = 'normal';
+        var layer_Iris_Marseille_4 = new L.geoJson(json_Iris_Marseille_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Iris_Marseille_4',
+            layerName: 'layer_Iris_Marseille_4',
+            pane: 'pane_Iris_Marseille_4',
+            onEachFeature: pop_Iris_Marseille_4,
+            style: style_Iris_Marseille_4_0,
+        });
+        bounds_group.addLayer(layer_Iris_Marseille_4);
+        function pop_Risquecommunaldeprcaritalimentaire_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Commune</strong><br />' + (feature.properties['libgeo'] !== null ? autolinker.link(feature.properties['libgeo'].toLocaleString()) : '') + '</td>\
@@ -204,11 +251,11 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Risquecommunaldeprcaritalimentaire_4_0(feature) {
+        function style_Risquecommunaldeprcaritalimentaire_5_0(feature) {
             switch(String(feature.properties['Jenks choi'])) {
                 case '1 - Très bas':
                     return {
-                pane: 'pane_Risquecommunaldeprcaritalimentaire_4',
+                pane: 'pane_Risquecommunaldeprcaritalimentaire_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.85)',
                 dashArray: '',
@@ -223,7 +270,7 @@
                     break;
                 case '2 - Bas':
                     return {
-                pane: 'pane_Risquecommunaldeprcaritalimentaire_4',
+                pane: 'pane_Risquecommunaldeprcaritalimentaire_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.85)',
                 dashArray: '',
@@ -238,7 +285,7 @@
                     break;
                 case '3 - Moyen':
                     return {
-                pane: 'pane_Risquecommunaldeprcaritalimentaire_4',
+                pane: 'pane_Risquecommunaldeprcaritalimentaire_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.85)',
                 dashArray: '',
@@ -253,7 +300,7 @@
                     break;
                 case '4 - Elevé':
                     return {
-                pane: 'pane_Risquecommunaldeprcaritalimentaire_4',
+                pane: 'pane_Risquecommunaldeprcaritalimentaire_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.85)',
                 dashArray: '',
@@ -268,7 +315,7 @@
                     break;
                 case '5 - Très élevé':
                     return {
-                pane: 'pane_Risquecommunaldeprcaritalimentaire_4',
+                pane: 'pane_Risquecommunaldeprcaritalimentaire_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.85)',
                 dashArray: '',
@@ -283,21 +330,201 @@
                     break;
             }
         }
-        map.createPane('pane_Risquecommunaldeprcaritalimentaire_4');
-        map.getPane('pane_Risquecommunaldeprcaritalimentaire_4').style.zIndex = 404;
-        map.getPane('pane_Risquecommunaldeprcaritalimentaire_4').style['mix-blend-mode'] = 'normal';
-        var layer_Risquecommunaldeprcaritalimentaire_4 = new L.geoJson(json_Risquecommunaldeprcaritalimentaire_4, {
+        map.createPane('pane_Risquecommunaldeprcaritalimentaire_5');
+        map.getPane('pane_Risquecommunaldeprcaritalimentaire_5').style.zIndex = 405;
+        map.getPane('pane_Risquecommunaldeprcaritalimentaire_5').style['mix-blend-mode'] = 'normal';
+        var layer_Risquecommunaldeprcaritalimentaire_5 = new L.geoJson(json_Risquecommunaldeprcaritalimentaire_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Risquecommunaldeprcaritalimentaire_4',
-            layerName: 'layer_Risquecommunaldeprcaritalimentaire_4',
-            pane: 'pane_Risquecommunaldeprcaritalimentaire_4',
-            onEachFeature: pop_Risquecommunaldeprcaritalimentaire_4,
-            style: style_Risquecommunaldeprcaritalimentaire_4_0,
+            dataVar: 'json_Risquecommunaldeprcaritalimentaire_5',
+            layerName: 'layer_Risquecommunaldeprcaritalimentaire_5',
+            pane: 'pane_Risquecommunaldeprcaritalimentaire_5',
+            onEachFeature: pop_Risquecommunaldeprcaritalimentaire_5,
+            style: style_Risquecommunaldeprcaritalimentaire_5_0,
         });
-        bounds_group.addLayer(layer_Risquecommunaldeprcaritalimentaire_4);
-        map.addLayer(layer_Risquecommunaldeprcaritalimentaire_4);
-        function pop_SecoursPopulaire_5(feature, layer) {
+        bounds_group.addLayer(layer_Risquecommunaldeprcaritalimentaire_5);
+        map.addLayer(layer_Risquecommunaldeprcaritalimentaire_5);
+        function pop_MagasinsCollecte2023_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Enseigne</strong><br />' + (feature.properties['Enseigne'] !== null ? autolinker.link(feature.properties['Enseigne'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N° Fournisseur</strong><br />' + (feature.properties['Numero_Fou'] !== null ? autolinker.link(feature.properties['Numero_Fou'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Magasin</strong><br />' + (feature.properties['Nom_Enseig'] !== null ? autolinker.link(feature.properties['Nom_Enseig'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tonnage (en kg)</strong><br />' + (feature.properties['Quantité'] !== null ? autolinker.link(feature.properties['Quantité'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_MagasinsCollecte2023_6_0() {
+            return {
+                pane: 'pane_MagasinsCollecte2023_6',
+                shape: 'square',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(185,18,200,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_MagasinsCollecte2023_6');
+        map.getPane('pane_MagasinsCollecte2023_6').style.zIndex = 406;
+        map.getPane('pane_MagasinsCollecte2023_6').style['mix-blend-mode'] = 'normal';
+        var layer_MagasinsCollecte2023_6 = new L.geoJson(json_MagasinsCollecte2023_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_MagasinsCollecte2023_6',
+            layerName: 'layer_MagasinsCollecte2023_6',
+            pane: 'pane_MagasinsCollecte2023_6',
+            onEachFeature: pop_MagasinsCollecte2023_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_MagasinsCollecte2023_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_MagasinsCollecte2023_6);
+        function pop_GMSRamasse_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nom</strong><br />' + (feature.properties['Nom'] !== null ? autolinker.link(feature.properties['Nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Adresse</strong><br />' + (feature.properties['Rue'] !== null ? autolinker.link(feature.properties['Rue'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CP'] !== null ? autolinker.link(feature.properties['CP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Ville'] !== null ? autolinker.link(feature.properties['Ville'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Collecte 2022</strong><br />' + (feature.properties['Collecte 2'] !== null ? autolinker.link(feature.properties['Collecte 2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Récolte directe BA</strong><br />' + (feature.properties['Récolte d'] !== null ? autolinker.link(feature.properties['Récolte d'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Récolte Tripartite</strong><br />' + (feature.properties['Récolte T'] !== null ? autolinker.link(feature.properties['Récolte T'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Récolte ProxiDon</strong><br />' + (feature.properties['Récolte P'] !== null ? autolinker.link(feature.properties['Récolte P'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Récolté par :</strong><br />' + (feature.properties['si pas BA,'] !== null ? autolinker.link(feature.properties['si pas BA,'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Mail</strong><br />' + (feature.properties['Mail'] !== null ? autolinker.link(feature.properties['Mail'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Acceuil</strong><br />' + (feature.properties['Acceuil'] !== null ? autolinker.link(feature.properties['Acceuil'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GMSRamasse_7_0() {
+            return {
+                pane: 'pane_GMSRamasse_7',
+                shape: 'square',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(53,81,241,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_GMSRamasse_7');
+        map.getPane('pane_GMSRamasse_7').style.zIndex = 407;
+        map.getPane('pane_GMSRamasse_7').style['mix-blend-mode'] = 'normal';
+        var layer_GMSRamasse_7 = new L.geoJson(json_GMSRamasse_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GMSRamasse_7',
+            layerName: 'layer_GMSRamasse_7',
+            pane: 'pane_GMSRamasse_7',
+            onEachFeature: pop_GMSRamasse_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_GMSRamasse_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_GMSRamasse_7);
+        function pop_DonateursProxiDon_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nom</strong><br />' + (feature.properties['Nom'] !== null ? autolinker.link(feature.properties['Nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CP'] !== null ? autolinker.link(feature.properties['CP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Ville'] !== null ? autolinker.link(feature.properties['Ville'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_DonateursProxiDon_8_0() {
+            return {
+                pane: 'pane_DonateursProxiDon_8',
+                shape: 'square',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DonateursProxiDon_8');
+        map.getPane('pane_DonateursProxiDon_8').style.zIndex = 408;
+        map.getPane('pane_DonateursProxiDon_8').style['mix-blend-mode'] = 'normal';
+        var layer_DonateursProxiDon_8 = new L.geoJson(json_DonateursProxiDon_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DonateursProxiDon_8',
+            layerName: 'layer_DonateursProxiDon_8',
+            pane: 'pane_DonateursProxiDon_8',
+            onEachFeature: pop_DonateursProxiDon_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_DonateursProxiDon_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_DonateursProxiDon_8);
+        function pop_SecoursPopulaire_9(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Secours Populaire</strong><br />' + (feature.properties['Secours_Po'] !== null ? autolinker.link(feature.properties['Secours_Po'].toLocaleString()) : '') + '</td>\
@@ -315,39 +542,38 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_SecoursPopulaire_5_0() {
+        function style_SecoursPopulaire_9_0() {
             return {
-                pane: 'pane_SecoursPopulaire_5',
+                pane: 'pane_SecoursPopulaire_9',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Secours Populaire Français.svg',
+            iconUrl: 'markers/SecoursPopulaire_9.svg',
             iconSize: [20.52, 20.52]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_SecoursPopulaire_5');
-        map.getPane('pane_SecoursPopulaire_5').style.zIndex = 405;
-        map.getPane('pane_SecoursPopulaire_5').style['mix-blend-mode'] = 'normal';
-        var layer_SecoursPopulaire_5 = new L.geoJson(json_SecoursPopulaire_5, {
+        map.createPane('pane_SecoursPopulaire_9');
+        map.getPane('pane_SecoursPopulaire_9').style.zIndex = 409;
+        map.getPane('pane_SecoursPopulaire_9').style['mix-blend-mode'] = 'normal';
+        var layer_SecoursPopulaire_9 = new L.geoJson(json_SecoursPopulaire_9, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SecoursPopulaire_5',
-            layerName: 'layer_SecoursPopulaire_5',
-            pane: 'pane_SecoursPopulaire_5',
-            onEachFeature: pop_SecoursPopulaire_5,
+            dataVar: 'json_SecoursPopulaire_9',
+            layerName: 'layer_SecoursPopulaire_9',
+            pane: 'pane_SecoursPopulaire_9',
+            onEachFeature: pop_SecoursPopulaire_9,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_SecoursPopulaire_5_0(feature));
+                return L.marker(latlng, style_SecoursPopulaire_9_0(feature));
             },
         });
-        bounds_group.addLayer(layer_SecoursPopulaire_5);
-        map.addLayer(layer_SecoursPopulaire_5);
-        function pop_RestoduCoeur_6(feature, layer) {
+        bounds_group.addLayer(layer_SecoursPopulaire_9);
+        function pop_RestoduCoeur_10(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Resto du Coeur</strong><br />' + (feature.properties['Resto_du_C'] !== null ? autolinker.link(feature.properties['Resto_du_C'].toLocaleString()) : '') + '</td>\
@@ -371,39 +597,38 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_RestoduCoeur_6_0() {
+        function style_RestoduCoeur_10_0() {
             return {
-                pane: 'pane_RestoduCoeur_6',
+                pane: 'pane_RestoduCoeur_10',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/RDC (fond blanc).svg',
+            iconUrl: 'markers/RestoduCoeur_10.svg',
             iconSize: [24.32, 24.32]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_RestoduCoeur_6');
-        map.getPane('pane_RestoduCoeur_6').style.zIndex = 406;
-        map.getPane('pane_RestoduCoeur_6').style['mix-blend-mode'] = 'normal';
-        var layer_RestoduCoeur_6 = new L.geoJson(json_RestoduCoeur_6, {
+        map.createPane('pane_RestoduCoeur_10');
+        map.getPane('pane_RestoduCoeur_10').style.zIndex = 410;
+        map.getPane('pane_RestoduCoeur_10').style['mix-blend-mode'] = 'normal';
+        var layer_RestoduCoeur_10 = new L.geoJson(json_RestoduCoeur_10, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_RestoduCoeur_6',
-            layerName: 'layer_RestoduCoeur_6',
-            pane: 'pane_RestoduCoeur_6',
-            onEachFeature: pop_RestoduCoeur_6,
+            dataVar: 'json_RestoduCoeur_10',
+            layerName: 'layer_RestoduCoeur_10',
+            pane: 'pane_RestoduCoeur_10',
+            onEachFeature: pop_RestoduCoeur_10,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_RestoduCoeur_6_0(feature));
+                return L.marker(latlng, style_RestoduCoeur_10_0(feature));
             },
         });
-        bounds_group.addLayer(layer_RestoduCoeur_6);
-        map.addLayer(layer_RestoduCoeur_6);
-        function pop_SecoursCatholique_7(feature, layer) {
+        bounds_group.addLayer(layer_RestoduCoeur_10);
+        function pop_SecoursCatholique_11(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Ville</strong><br />' + (feature.properties['Ville'] !== null ? autolinker.link(feature.properties['Ville'].toLocaleString()) : '') + '</td>\
@@ -427,39 +652,38 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_SecoursCatholique_7_0() {
+        function style_SecoursCatholique_11_0() {
             return {
-                pane: 'pane_SecoursCatholique_7',
+                pane: 'pane_SecoursCatholique_11',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Secours Catholique (rond).svg',
+            iconUrl: 'markers/SecoursCatholique_11.svg',
             iconSize: [20.52, 20.52]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_SecoursCatholique_7');
-        map.getPane('pane_SecoursCatholique_7').style.zIndex = 407;
-        map.getPane('pane_SecoursCatholique_7').style['mix-blend-mode'] = 'normal';
-        var layer_SecoursCatholique_7 = new L.geoJson(json_SecoursCatholique_7, {
+        map.createPane('pane_SecoursCatholique_11');
+        map.getPane('pane_SecoursCatholique_11').style.zIndex = 411;
+        map.getPane('pane_SecoursCatholique_11').style['mix-blend-mode'] = 'normal';
+        var layer_SecoursCatholique_11 = new L.geoJson(json_SecoursCatholique_11, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SecoursCatholique_7',
-            layerName: 'layer_SecoursCatholique_7',
-            pane: 'pane_SecoursCatholique_7',
-            onEachFeature: pop_SecoursCatholique_7,
+            dataVar: 'json_SecoursCatholique_11',
+            layerName: 'layer_SecoursCatholique_11',
+            pane: 'pane_SecoursCatholique_11',
+            onEachFeature: pop_SecoursCatholique_11,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_SecoursCatholique_7_0(feature));
+                return L.marker(latlng, style_SecoursCatholique_11_0(feature));
             },
         });
-        bounds_group.addLayer(layer_SecoursCatholique_7);
-        map.addLayer(layer_SecoursCatholique_7);
-        function pop_AssociationspartenairesBA13_8(feature, layer) {
+        bounds_group.addLayer(layer_SecoursCatholique_11);
+        function pop_AssociationsutilisatricesProxiDon_12(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Code VIF</strong><br />' + (feature.properties['Code VIF'] !== null ? autolinker.link(feature.properties['Code VIF'].toLocaleString()) : '') + '</td>\
@@ -471,7 +695,59 @@
                         <td colspan="2"><strong>Adresse</strong><br />' + (feature.properties['Adresse'] !== null ? autolinker.link(feature.properties['Adresse'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Code postal'] !== null ? autolinker.link(feature.properties['Code postal'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Ville'] !== null ? autolinker.link(feature.properties['Ville'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Fréquence</strong><br />' + (feature.properties['Fréquence'] !== null ? autolinker.link(feature.properties['Fréquence'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AssociationsutilisatricesProxiDon_12_0() {
+            return {
+                pane: 'pane_AssociationsutilisatricesProxiDon_12',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/AssociationsutilisatricesProxiDon_12.svg',
+            iconSize: [15.2, 15.2]
+        }),
+                interactive: true,
+            }
+        }
+        map.createPane('pane_AssociationsutilisatricesProxiDon_12');
+        map.getPane('pane_AssociationsutilisatricesProxiDon_12').style.zIndex = 412;
+        map.getPane('pane_AssociationsutilisatricesProxiDon_12').style['mix-blend-mode'] = 'normal';
+        var layer_AssociationsutilisatricesProxiDon_12 = new L.geoJson(json_AssociationsutilisatricesProxiDon_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AssociationsutilisatricesProxiDon_12',
+            layerName: 'layer_AssociationsutilisatricesProxiDon_12',
+            pane: 'pane_AssociationsutilisatricesProxiDon_12',
+            onEachFeature: pop_AssociationsutilisatricesProxiDon_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_AssociationsutilisatricesProxiDon_12_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_AssociationsutilisatricesProxiDon_12);
+        function pop_Associationspartenaires_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Code VIF</strong><br />' + (feature.properties['Code VIF'] !== null ? autolinker.link(feature.properties['Code VIF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Association</strong><br />' + (feature.properties['Libellé'] !== null ? autolinker.link(feature.properties['Libellé'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Adresse</strong><br />' + (feature.properties['Adresse'] !== null ? autolinker.link(feature.properties['Adresse'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Code posta'] !== null ? autolinker.link(feature.properties['Code posta'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Ville'] !== null ? autolinker.link(feature.properties['Ville'].toLocaleString()) : '') + '</td>\
@@ -480,10 +756,10 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_AssociationspartenairesBA13_8_0() {
+        function style_Associationspartenaires_13_0() {
             return {
-                pane: 'pane_AssociationspartenairesBA13_8',
-                radius: 5.2,
+                pane: 'pane_Associationspartenaires_13',
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -496,79 +772,27 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_AssociationspartenairesBA13_8');
-        map.getPane('pane_AssociationspartenairesBA13_8').style.zIndex = 408;
-        map.getPane('pane_AssociationspartenairesBA13_8').style['mix-blend-mode'] = 'normal';
-        var layer_AssociationspartenairesBA13_8 = new L.geoJson(json_AssociationspartenairesBA13_8, {
+        map.createPane('pane_Associationspartenaires_13');
+        map.getPane('pane_Associationspartenaires_13').style.zIndex = 413;
+        map.getPane('pane_Associationspartenaires_13').style['mix-blend-mode'] = 'normal';
+        var layer_Associationspartenaires_13 = new L.geoJson(json_Associationspartenaires_13, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_AssociationspartenairesBA13_8',
-            layerName: 'layer_AssociationspartenairesBA13_8',
-            pane: 'pane_AssociationspartenairesBA13_8',
-            onEachFeature: pop_AssociationspartenairesBA13_8,
+            dataVar: 'json_Associationspartenaires_13',
+            layerName: 'layer_Associationspartenaires_13',
+            pane: 'pane_Associationspartenaires_13',
+            onEachFeature: pop_Associationspartenaires_13,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_AssociationspartenairesBA13_8_0(feature));
+                return L.circleMarker(latlng, style_Associationspartenaires_13_0(feature));
             },
         });
-        bounds_group.addLayer(layer_AssociationspartenairesBA13_8);
-        map.addLayer(layer_AssociationspartenairesBA13_8);
-        function pop_AntenneBA13SaintAndiol_9(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><strong>Adresse</strong><br />' + (feature.properties['Adresse'] !== null ? autolinker.link(feature.properties['Adresse'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Antenne Banque Alimentaire </strong><br />' + (feature.properties['BANQUES AL'] !== null ? autolinker.link(feature.properties['BANQUES AL'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Mail</strong><br />' + (feature.properties['Mail'] !== null ? autolinker.link(feature.properties['Mail'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_AntenneBA13SaintAndiol_9_0() {
-            return {
-                pane: 'pane_AntenneBA13SaintAndiol_9',
-                shape: 'square',
-                radius: 6.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,127,0,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_AntenneBA13SaintAndiol_9');
-        map.getPane('pane_AntenneBA13SaintAndiol_9').style.zIndex = 409;
-        map.getPane('pane_AntenneBA13SaintAndiol_9').style['mix-blend-mode'] = 'normal';
-        var layer_AntenneBA13SaintAndiol_9 = new L.geoJson(json_AntenneBA13SaintAndiol_9, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_AntenneBA13SaintAndiol_9',
-            layerName: 'layer_AntenneBA13SaintAndiol_9',
-            pane: 'pane_AntenneBA13SaintAndiol_9',
-            onEachFeature: pop_AntenneBA13SaintAndiol_9,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.shapeMarker(latlng, style_AntenneBA13SaintAndiol_9_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_AntenneBA13SaintAndiol_9);
-        map.addLayer(layer_AntenneBA13SaintAndiol_9);
-        function pop_BanqueAlimentairedesBouchesduRhne_10(feature, layer) {
+        bounds_group.addLayer(layer_Associationspartenaires_13);
+        map.addLayer(layer_Associationspartenaires_13);
+        function pop_BanqueAlimentairedesBouchesduRhne_14(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Banque Alimentaire </strong><br />' + (feature.properties['BANQUES AL'] !== null ? autolinker.link(feature.properties['BANQUES AL'].toLocaleString()) : '') + '</td>\
@@ -595,9 +819,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_BanqueAlimentairedesBouchesduRhne_10_0() {
+        function style_BanqueAlimentairedesBouchesduRhne_14_0() {
             return {
-                pane: 'pane_BanqueAlimentairedesBouchesduRhne_10',
+                pane: 'pane_BanqueAlimentairedesBouchesduRhne_14',
                 radius: 11.6,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -611,46 +835,46 @@
                 interactive: true,
             }
         }
-        function style_BanqueAlimentairedesBouchesduRhne_10_1() {
+        function style_BanqueAlimentairedesBouchesduRhne_14_1() {
             return {
-                pane: 'pane_BanqueAlimentairedesBouchesduRhne_10',
+                pane: 'pane_BanqueAlimentairedesBouchesduRhne_14',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/BA (associations partenaires).svg',
+            iconUrl: 'markers/BanqueAlimentairedesBouchesduRhne_14.svg',
             iconSize: [19.0, 19.0]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_BanqueAlimentairedesBouchesduRhne_10');
-        map.getPane('pane_BanqueAlimentairedesBouchesduRhne_10').style.zIndex = 410;
-        map.getPane('pane_BanqueAlimentairedesBouchesduRhne_10').style['mix-blend-mode'] = 'normal';
-        var layer_BanqueAlimentairedesBouchesduRhne_10 = new L.geoJson.multiStyle(json_BanqueAlimentairedesBouchesduRhne_10, {
+        map.createPane('pane_BanqueAlimentairedesBouchesduRhne_14');
+        map.getPane('pane_BanqueAlimentairedesBouchesduRhne_14').style.zIndex = 414;
+        map.getPane('pane_BanqueAlimentairedesBouchesduRhne_14').style['mix-blend-mode'] = 'normal';
+        var layer_BanqueAlimentairedesBouchesduRhne_14 = new L.geoJson.multiStyle(json_BanqueAlimentairedesBouchesduRhne_14, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_BanqueAlimentairedesBouchesduRhne_10',
-            layerName: 'layer_BanqueAlimentairedesBouchesduRhne_10',
-            pane: 'pane_BanqueAlimentairedesBouchesduRhne_10',
-            onEachFeature: pop_BanqueAlimentairedesBouchesduRhne_10,
+            dataVar: 'json_BanqueAlimentairedesBouchesduRhne_14',
+            layerName: 'layer_BanqueAlimentairedesBouchesduRhne_14',
+            pane: 'pane_BanqueAlimentairedesBouchesduRhne_14',
+            onEachFeature: pop_BanqueAlimentairedesBouchesduRhne_14,
             pointToLayers: [function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_BanqueAlimentairedesBouchesduRhne_10_0(feature));
+                return L.marker(latlng, style_BanqueAlimentairedesBouchesduRhne_14_0(feature));
             },function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_BanqueAlimentairedesBouchesduRhne_10_1(feature));
+                return L.marker(latlng, style_BanqueAlimentairedesBouchesduRhne_14_1(feature));
             },
         ]});
-        bounds_group.addLayer(layer_BanqueAlimentairedesBouchesduRhne_10);
-        map.addLayer(layer_BanqueAlimentairedesBouchesduRhne_10);
+        bounds_group.addLayer(layer_BanqueAlimentairedesBouchesduRhne_14);
+        map.addLayer(layer_BanqueAlimentairedesBouchesduRhne_14);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/BanqueAlimentairedesBouchesduRhne_10.png" /> Banque Alimentaire des Bouches du Rhône': layer_BanqueAlimentairedesBouchesduRhne_10,'<img src="legend/AntenneBA13SaintAndiol_9.png" /> Antenne BA13-Saint-Andiol': layer_AntenneBA13SaintAndiol_9,'<img src="legend/AssociationspartenairesBA13_8.png" /> Associations partenaires BA13': layer_AssociationspartenairesBA13_8,'<img src="legend/SecoursCatholique_7.png" /> Secours Catholique': layer_SecoursCatholique_7,'<img src="legend/RestoduCoeur_6.png" /> Resto du Coeur': layer_RestoduCoeur_6,'<img src="legend/SecoursPopulaire_5.png" /> Secours Populaire': layer_SecoursPopulaire_5,'Risque communal de précarité alimentaire<br /><table><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_4_1Trèsbas0.png" /></td><td>1 - Très bas</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_4_2Bas1.png" /></td><td>2 - Bas</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_4_3Moyen2.png" /></td><td>3 - Moyen</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_4_4Elevé3.png" /></td><td>4 - Elevé</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_4_5Trèsélevé4.png" /></td><td>5 - Très élevé</td></tr></table>': layer_Risquecommunaldeprcaritalimentaire_4,'<img src="legend/CommunesBouchesduRhne_3.png" /> Communes - Bouches du Rhône': layer_CommunesBouchesduRhne_3,'<img src="legend/EPCIBouchesduRhone_2.png" /> EPCI - Bouches du Rhone': layer_EPCIBouchesduRhone_2,'<img src="legend/BouchesduRhone_1.png" /> Bouches du Rhone': layer_BouchesduRhone_1,"Google Road": layer_GoogleRoad_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/BanqueAlimentairedesBouchesduRhne_14.png" /> Banque Alimentaire des Bouches du Rhône': layer_BanqueAlimentairedesBouchesduRhne_14,'<img src="legend/Associationspartenaires_13.png" /> Associations partenaires': layer_Associationspartenaires_13,'<img src="legend/AssociationsutilisatricesProxiDon_12.png" /> Associations utilisatrices ProxiDon': layer_AssociationsutilisatricesProxiDon_12,'<img src="legend/SecoursCatholique_11.png" /> Secours Catholique': layer_SecoursCatholique_11,'<img src="legend/RestoduCoeur_10.png" /> Resto du Coeur': layer_RestoduCoeur_10,'<img src="legend/SecoursPopulaire_9.png" /> Secours Populaire': layer_SecoursPopulaire_9,'<img src="legend/DonateursProxiDon_8.png" /> Donateurs ProxiDon ': layer_DonateursProxiDon_8,'<img src="legend/GMSRamasse_7.png" /> GMS - Ramasse ': layer_GMSRamasse_7,'<img src="legend/MagasinsCollecte2023_6.png" /> Magasins - Collecte 2023 ': layer_MagasinsCollecte2023_6,'Risque communal de précarité alimentaire<br /><table><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_5_1Trèsbas0.png" /></td><td>1 - Très bas</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_5_2Bas1.png" /></td><td>2 - Bas</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_5_3Moyen2.png" /></td><td>3 - Moyen</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_5_4Elevé3.png" /></td><td>4 - Elevé</td></tr><tr><td style="text-align: center;"><img src="legend/Risquecommunaldeprcaritalimentaire_5_5Trèsélevé4.png" /></td><td>5 - Très élevé</td></tr></table>': layer_Risquecommunaldeprcaritalimentaire_5,'<img src="legend/Iris_Marseille_4.png" /> Iris_Marseille': layer_Iris_Marseille_4,'<img src="legend/CommunesBouchesduRhne_3.png" /> Communes - Bouches du Rhône': layer_CommunesBouchesduRhne_3,'<img src="legend/EPCIBouchesduRhone_2.png" /> EPCI - Bouches du Rhone': layer_EPCIBouchesduRhone_2,'<img src="legend/BouchesduRhone_1.png" /> Bouches du Rhone': layer_BouchesduRhone_1,"Google Road": layer_GoogleRoad_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
